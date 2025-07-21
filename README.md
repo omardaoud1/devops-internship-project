@@ -36,14 +36,17 @@ docker-compose up --build
 ----
 ## Services & Ports
 
-| Service      | Description             | Port  |
-| ------------ | ----------------------- | ----- |
-| Backend API  | Node.js server          | 5000  |
-| MongoDB      | Database                | 27017 |
-| Prometheus   | Metrics collection      | 9090  |
-| Grafana      | Dashboard visualization | 3001  |
-| Loki         | Log aggregation         | 3100  |
-| Alertmanager | Alert management        | 9093  |
+| Service       | Description             | Port  |
+| ------------- | ----------------------- | ----- |
+| Backend API   | Node.js server          | 5000  |
+| MongoDB       | Database                | 27017 |
+| Prometheus    | Metrics collection      | 9090  |
+| Grafana       | Dashboard visualization | 3001  |
+| Loki          | Log aggregation         | 3100  |
+| Alertmanager  | Alert management        | 9093  |
+| Node Exporter | Host system metrics     | 9100  |
+| Promtail      | Log shipping agent      | N/A   |
+
 
 
 ----
