@@ -1,0 +1,12 @@
+groups:
+  - name: test-alert
+    rules:
+      - alert: AlwaysFiring
+        expr: vector(1)
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Test alert always firing"
+          description: "This alert always fires for testing Alertmanager."
+

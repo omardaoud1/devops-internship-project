@@ -1,0 +1,45 @@
+groups:
+  - name: system-alerts
+    rules:
+      - alert: HighCPUUsage
+        expr: max by(instance, cpu)(100 - rate(node_cpu_seconds_total{mode="idle"}[2m]) * 100) > 20
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High CPU usage detected"
+          description: "CPU usage is above 80% on at least one core for more than 1 minute."
+
+
+
+      - alert: HighMemoryUsage
+        expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes > 0.8
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High Memory usage detected"
+          description: "Memory usage is above 80% for more than 1 minute."
+
+
+      - alert: HighHTTP500Errors
+        expr: rate(http_requests_total{status="500"}[1m]) > 0
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "HTTP 500 errors detected"
+          description: "The app has returned HTTP 500 errors in the last minute."
+
+
+
+      - alert: AppDown
+        expr: up{job="backend"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "app is down"
+          description: "Prometheus is not able to scrape metrics from backend."
+
+
